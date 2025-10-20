@@ -1,35 +1,37 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Home from '@/views/HomePage.vue';  // 引入自定义的首页组件
-import Scene from '@/views/ScenePage.vue';
-import Task from '@/views/TaskPage.vue';
-import Profile from '@/views/ProfilePage.vue';
+import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home,  // 指向你自定义的首页组件
+    path: "/",
+    name: "HomePage",
+    component: () => import("../views/HomePage.vue"),
   },
   {
-    path: '/scene',
-    name: 'Scene',
-    component: Scene,
+    path: "/scene",
+    name: "ScenePage",
+    component: () => import("../views/ScenePage.vue"),
   },
   {
-    path: '/task',
-    name: 'Task',
-    component: Task,
+    path: "/knowledge",
+    name: "KnowledgePage",
+    component: () => import("../views/KnowledgePage.vue"),
   },
   {
-    path: '/profile',
-    name: 'Profile',
-    component: Profile,
+    path: "/knowledge/modules/:moduleId",
+    name: "KnowledgeModulePage",
+    component: () => import("../views/KnowledgeModulePage.vue"),
+    props: true,
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    redirect: { name: "HomePage" },
   },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes,
+  scrollBehavior: () => ({ top: 0 }),
 });
 
 export default router;

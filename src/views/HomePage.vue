@@ -1,130 +1,82 @@
 <template>
-  <div class="app-container">
-    <!-- 顶部导航栏 -->
-    <header class="header">
-      <div class="logo">个性化儿童学习系统</div>
-      <nav class="navbar">
-        <ul>
-          <li><router-link to="/home">首页</router-link></li>
-          <li><router-link to="/about">关于我们</router-link></li>
-          <li><router-link to="/contact">联系我们</router-link></li>
-        </ul>
-      </nav>
+  <div class="home-page">
+    <header class="home-hero">
+      <h1 class="home-hero__title">欢迎来到学习旅程</h1>
+      <p class="home-hero__subtitle">
+        在这里你可以探索不同的学习场景与互动模块，开启充满灵感的知识冒险。
+      </p>
+      <button class="home-hero__cta" @click="handleEnterScene">进入学习场景</button>
     </header>
-
-    <!-- 页面中间内容 -->
-    <div class="main-content">
-      <h1>欢迎使用个性化儿童学习系统</h1>
-      <div class="button-container">
-        <button @click="navigateTo('Scene')" class="action-button blue">学习场景</button>
-        <button @click="navigateTo('Task')" class="action-button yellow">学习任务</button>
-        <button @click="navigateTo('Profile')" class="action-button green">学习档案</button>
-      </div>
-    </div>
-
-    <!-- 底部部分 -->
-    <footer class="footer">
-      <p>© 2025 个性化儿童学习系统 | 版权声明</p>
-    </footer>
   </div>
 </template>
 
-<script>
-export default {
-  methods: {
-    navigateTo(page) {
-      this.$router.push({ name: page });
-    }
-  }
-}
+<script setup>
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const handleEnterScene = () => {
+  router.push({ name: "ScenePage" });
+};
 </script>
 
 <style scoped>
-.app-container {
-  display: flex;
-  flex-direction: column;
+.home-page {
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+  background: linear-gradient(160deg, #f4f7ff 0%, #ffffff 50%, #fff0f6 100%);
+  color: #1f2a44;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
-.header {
-  background-color: #f0f8ff;
-  padding: 20px;
+.home-hero {
+  max-width: 720px;
   text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.navbar {
-  margin-top: 10px;
-}
-
-.navbar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.navbar li {
-  display: inline;
-  margin: 0 15px;
-}
-
-.navbar a {
-  text-decoration: none;
-  color: #333;
-}
-
-.main-content {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #f9f9f9;
-  padding: 50px 20px;
+  gap: 24px;
 }
 
-.main-content h1 {
-  font-size: 28px;
-  color: #333;
+.home-hero__title {
+  font-size: 2.8rem;
+  font-weight: 700;
 }
 
-.button-container {
-  display: flex;
-  gap: 20px;
-  margin-top: 30px;
+.home-hero__subtitle {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #4a5b84;
 }
 
-.action-button {
-  padding: 20px 40px;
-  font-size: 18px;
-  color: #fff;
+.home-hero__cta {
+  align-self: center;
+  padding: 14px 36px;
+  border-radius: 999px;
   border: none;
-  border-radius: 15px;
+  background: linear-gradient(135deg, #4c6ef5, #5c8dff);
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 16px 36px rgba(76, 110, 245, 0.24);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.action-button:hover {
-  opacity: 0.8;
+.home-hero__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 44px rgba(76, 110, 245, 0.3);
 }
 
-.blue {
-  background-color: #4d8df3;
-}
+@media (max-width: 600px) {
+  .home-hero__title {
+    font-size: 2.1rem;
+  }
 
-.yellow {
-  background-color: #f9d423;
-}
-
-.green {
-  background-color: #48c78e;
-}
-
-.footer {
-  background-color: #fff;
-  text-align: center;
-  padding: 10px;
-  border-top: 1px solid #ddd;
-  font-size: 14px;
+  .home-hero__subtitle {
+    font-size: 1rem;
+  }
 }
 </style>
