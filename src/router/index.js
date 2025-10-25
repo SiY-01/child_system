@@ -3,8 +3,18 @@ import { createRouter, createWebHistory } from "vue-router";
 const routes = [
   {
     path: "/",
+    name: "LoginPage",
+    component: () => import("../views/LoginPage.vue"),
+  },
+  {
+    path: "/home",
     name: "HomePage",
     component: () => import("../views/HomePage.vue"),
+  },
+  {
+    path: "/profile",
+    name: "ProfilePage",
+    component: () => import("../views/ProfilePage.vue"),
   },
   {
     path: "/scene",
@@ -24,7 +34,7 @@ const routes = [
   },
   {
     path: "/:pathMatch(.*)*",
-    redirect: { name: "HomePage" },
+    redirect: { name: "LoginPage" },
   },
 ];
 
